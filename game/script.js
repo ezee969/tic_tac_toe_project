@@ -49,6 +49,9 @@
             this.retryBut.onclick = function(){
                 Config.retryButtonOnClick()
             }
+            this.mainMenuBut.onclick = function(){
+                Config.menuButtonOnClick()
+            }
         },
         keySelectButtonOnClick: function(element) {
             element.onclick = function(){
@@ -85,10 +88,9 @@
                     Config.newGame.board[e.id] = Config.newGame.findTurnPlayer().sign
                     Config.buttonSound.play()
                     e.innerHTML = Config.newGame.findTurnPlayer().sign
-                    Config.newGame.updateGameState()
-                    console.log(Config.newGame.winner)
-                    if (Config.newGame.winner==true || Config.newGame.winner=="draw"){
-                        if (Config.newGame.winner==true){
+                    Config.gameState = Config.newGame.updateGameState()
+                    if (Config.newGame.updateGameState()==true || Config.newGame.updateGameState()=="draw"){
+                        if (Config.newGame.updateGameState()==true){
                             Config.victoryPageTransition(Config.newGame.findTurnPlayer().name)
                         }
                         else{
@@ -161,7 +163,10 @@
             Config.victoryButsOnClick()
             Config.hideGameTransition()
             Config.gameReset()
-            console.log(this.newGame.board)
+        },
+        menuButtonOnClick: function(){
+            Config.retryButtonOnClick()
+            window.location.href = "../index.html"
         },
         victoryButsOnClick: function(){
             this.selectOnClickVictoryBut()
@@ -172,45 +177,37 @@
             },600);
         },
         gameReset: function(){
-            this.newGame.board = ["","","","","","","","",""];
-            this.newGame.winner = false;
-            console.log(this.newGame.winner)
+            this.newGame = createGame (this.Player1,this.Player2)
             this.allBoxes.forEach(e => e.innerHTML = "")
         }
     };
 
     const createGame = (p1,p2) => {
         players = [p1,p2];
-        board = ["","","","","","","","",""];
-        winner = false
+        let board = ["","","","","","","","",""];
 
         const updateGameState = () =>{
             for (var i=0; i<=3 ;i++){
-                if (this.board[i]!="" && (this.board[i] == this.board[i+3] && this.board[i] == this.board[i+6])){
-                    this.winner = true
-                    console.log("WORKS")
+                if (board[i]!="" && (board[i] == board[i+3] && board[i] == board[i+6])){
+                    return true
                 }
             }
 
             for (var i=0; i<=6 ;i+=3){
-                if (this.board[i]!="" && (this.board[i] == this.board[i+1] && this.board[i] == this.board[i+2])){
-                    this.winner = true
-                    console.log("WORKS")
-
+                if (board[i]!="" && (board[i] == board[i+1] && board[i] == board[i+2])){
+                    return true
                 }
             }
 
-            if (this.board[0]!="" && (this.board[0] == this.board[4] && this.board[0] == this.board[8])){
-                this.winner = true
-                console.log("WORKS")
+            if (board[0]!="" && (board[0] == board[4] && board[0] == board[8])){
+                return true
+                
                 }
-            else if (this.board[2]!="" && (this.board[2] == this.board[4] && this.board[2] == this.board[6])){
-                this.winner = true
-                console.log("WORKS")
+            else if (board[2]!="" && (board[2] == board[4] && board[2] == board[6])){
+                return true
                 }
-            else if (this.board.includes("")==false){
-                this.winner = "draw" 
-                console.log("WORKS")
+            else if (board.includes("")==false){
+                return "draw" 
             }
         };
 
@@ -233,7 +230,7 @@
             return players.find((player => player.plays==false))
         };
 
-        return {p1,p2,players,board,winner,updateGameState,findTurnPlayer,findNextTurnPlayer,changeTurnsPlayers}
+        return {p1,p2,players,board,updateGameState,findTurnPlayer,findNextTurnPlayer,changeTurnsPlayers}
     };
 
     var createPlayer = (name,sign) =>{
