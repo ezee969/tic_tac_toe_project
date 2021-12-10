@@ -5,6 +5,7 @@
     const Config ={
         init: function(){
             Config.cacheDom()
+            this.bgMusic.play()
             Config.mainMenuBgMusic(0.3)
             Config.mainMenuButtonOnClick()
         },
