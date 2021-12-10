@@ -5,20 +5,14 @@
     const Config ={
         init: function(){
             Config.cacheDom()
-            this.bgMusic.play()
-            Config.mainMenuBgMusic(0.3)
             Config.mainMenuButtonOnClick()
         },
         cacheDom: function(){
-            this.bgMusic = document.getElementById("bgMusic");
             this.buttonSound = document.querySelector("#select")
             this.mainContainer = document.querySelector(".mainContainer")
             this.mainMenuButton = document.querySelector("#newGameBut")
         },
-        mainMenuBgMusic: function(vol){
-            this.bgMusic.play()
-            this.bgMusic.volume = vol;
-        },
+       
         mainMenuButtonOnClick: function(){
             this.mainMenuButton.onclick = function(){
                 Config.buttonSound.play()
