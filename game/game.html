@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="#">
+    <link rel="stylesheet" href="../style.css">
+    <script defer src="./script.js"></script>
+    <title>Tic Tac Toe</title>
+</head>
+<body>
+    <div class="mainCharSelectionContainer">
+        <div class="playersContainer">
+            <div class="playerCont">
+                <p class="subtitle">Player 1:</p>
+                <input maxlength="16" id="p1-name" name="p1-name" class="textIn" type="text" placeholder="Player 1">
+                <div class="keyContainer">
+                    <button id=0 class=keyChooserBut>X</button>
+                    <button id=1 class=keyChooserBut>O</button>
+                </div>
+            </div>
+            <div class="playerCont">
+                <p class="subtitle">Player 2:</p>
+                <input maxlength="16" id="p2-name" name="p2-name" class="textIn" type="text" placeholder="Player 2">
+                <div class="keyContainer">
+                    <button id=2 class=keyChooserBut>X</button>
+                    <button id=3 class=keyChooserBut>O</button>
+                </div>
+            </div>
+        </div>
+        <button class=startBut>Start >></button>
+    </div>
+    <div class="game-modal">
+        <div class="game-cont">
+            <div class="header">Player X Turn</div>
+            <div class="gameBox">
+                <div id=0 class="box"></div>
+                <div id=1 class="box"></div>
+                <div id=2 class="box"></div>
+                <div id=3 class="box"></div>
+                <div id=4 class="box"></div>
+                <div id=5 class="box"></div>
+                <div id=6 class="box"></div>
+                <div id=7 class="box"></div>
+                <div id=8 class="box"></div>
+            </div>
+        </div>
+    </div>
+    <div class="victory-modal">
+        <div class="victory-cont">
+            <div class="victory-header">
+                <div id="victoryName"></div>
+            </div>
+            <div class="options-cont">
+                <button class=victoryBut id=retryBut>Retry</button>
+                <button class=victoryBut id=mainMenuBut>Main menu</button>
+            </div>
+        </div>
+    </div>
+    <audio id="select" src="../audio/select.mp3"></audio>
+    <audio id="error" src="../audio/error.mp3"></audio>
+    <audio id="victory" src="../audio/victory.mp3"></audio>
+
+</body>
+</html>
